@@ -18,11 +18,31 @@
 
 		<div class="text-center">
 
-			<form>
-				<label for="name">your name</label>
-				<input type="text" name="name" id="name">
-				<input type="submit" value="Send">
-			</form>
+		<?php
+			if ($_GET['player_name'] == NULL):
+		?>
+
+				<form>
+					<label for="name">your name</label>
+					<input type="text" name="name" id="name">
+					<input type="submit" value="Send">
+				</form>
+
+			<?php 
+
+				else:
+
+					$name =	$_GET['name'];
+					$half_name_length = (int) (mb_strlen($name) /2);
+					$remaining_chars = mb_strlen($name) - $half_name_length;
+					$name_end = mb_substr($name, $half_name_length, $remaining_chars);
+					$name_beginning = mb_substr($name, 0, $half_name_length);
+					$botname = $name_end . $name_beginning;
+			 ?>
+
+			 	<h1><?= $botname ?></h1>
+
+			<?php endif  ?>
 
 		</div>
 
